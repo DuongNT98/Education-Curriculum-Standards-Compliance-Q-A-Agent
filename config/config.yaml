@@ -1,0 +1,30 @@
+# Runtime parameters — loaded by AgentRegistry (and by src/api/server.py for the
+# standalone entry point), passed as Graph(config=...). This is a SEPARATE file
+# from config/agent.yaml (the static manifest): agent.yaml is AgentRegistry's
+# discovery entry point, this file is the agent's own runtime config, keyed by
+# whatever the Graph/node code reads via self.config.get(...). See the
+# distributed framework contract doc for the agent.yaml / config.yaml split of
+# responsibility.
+
+max_retry: 3
+timeout_s: 30
+
+# Outer CurriculumGraphNode / inner CurriculumWorkflowGraph runtime knobs
+# (read via self.config.get(...) in src/graph/graph.py and
+# src/graph/curriculum_workflow_graph.py).
+top_k: 5
+hour_requirements_path: "config/hour_requirements/"
+
+# No HITL, no cross-invoke memory — this template has no interrupt() path
+# (error_strategy = "propagate", fail-fast; see docs/02_design.md).
+# memory_enabled: false
+# hitl:
+#   enabled: false
+#   max_hitl: 5
+
+# Azure OpenAI (QueryClassifyNode / GapAnalysisNode's real LLM refinement) is
+# NOT configured here: api_key, azure_endpoint, and azure_deployment are all
+# declared secrets (config/agent.yaml requires.secrets), resolved via
+# ctx.secrets.require(...) inside each node's execute(). A missing secret or
+# an LLM-call failure degrades to the deterministic heuristic — it does not
+# fail the pipeline.

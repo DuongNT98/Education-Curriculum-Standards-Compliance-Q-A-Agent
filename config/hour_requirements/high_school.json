@@ -1,0 +1,9 @@
+{
+  "grade_level": "high_school",
+  "source_ref": "学習指導要領（平成30年告示）高等学校 標準単位数表",
+  "subjects": {
+    "health_and_physical_education": {"min_hours": 7},
+    "japanese": {"min_hours": 8},
+    "math": {"min_hours": 6}
+  }
+}

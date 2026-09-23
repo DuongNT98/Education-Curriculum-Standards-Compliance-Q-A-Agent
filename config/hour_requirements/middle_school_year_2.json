@@ -1,0 +1,11 @@
+{
+  "grade_level": "middle_school_year_2",
+  "source_ref": "学習指導要領（平成29年告示）中学校 標準授業時数表",
+  "subjects": {
+    "math": {"min_hours": 105},
+    "science": {"min_hours": 105},
+    "japanese": {"min_hours": 140},
+    "social_studies": {"min_hours": 105},
+    "health_and_physical_education": {"min_hours": 105}
+  }
+}
